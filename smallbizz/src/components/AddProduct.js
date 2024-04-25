@@ -45,22 +45,22 @@
 // export default AddProduct;
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './addproduct.css'; // Import CSS file for styling
 
 const AddProduct = () => {
   const [productData, setProductData] = useState({
     name: '',
+    description: '', // Add description field
     price: '',
-    shopId: '' // Initialize shopId state
-    // Add more fields as needed
+    image: '', // Add image field
+    shopId: ''
   });
-useEffect(() => {
-    // Get the shopId from session and store it in state
+
+  useEffect(() => {
     const fetchShopId = async () => {
         try {
             const response = await axios.get('http://localhost:8000/api/auth/shopId');
-            console.log('Response:', response); // Log the response for debugging
-            const shopId = response.data.shopId;
-            console.log('Shop ID:', shopId); // Log the retrieved shopId for debugging
+            const shopId = response.data.ses;
             setProductData(prevData => ({ ...prevData, shopId }));
         } catch (error) {
             console.error('Error fetching shopId:', error);
@@ -68,7 +68,7 @@ useEffect(() => {
     };
 
     fetchShopId();
-}, []);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,7 +77,6 @@ useEffect(() => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(productData)
     try {
       await axios.post('http://localhost:8000/api/products', productData);
       window.location.href = '/home';
@@ -87,12 +86,13 @@ useEffect(() => {
   };
 
   return (
-    <div>
+    <div className="add-product-container">
       <h2>Add Product</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Product Name" value={productData.name} onChange={handleChange} />
+        <textarea name="description" placeholder="Product Description" value={productData.description} onChange={handleChange}></textarea>
         <input type="text" name="price" placeholder="Price" value={productData.price} onChange={handleChange} />
-        {/* Add more input fields for other product details */}
+        <input type="text" name="image" placeholder="Product Image URL" value={productData.image} onChange={handleChange} />
         <button type="submit">Submit</button>
       </form>
     </div>
