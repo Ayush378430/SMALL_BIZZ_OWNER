@@ -11,12 +11,13 @@ router.post('/', async (req, res) => {
         if (error) {
             return res.status(400).send({ message: error.details[0].message });
         }
-
+       
         // Check if the shop exists
-        const shop = await Shop.findById(req.body.shopId);
-        if (!shop) {
-            return res.status(404).send({ message: 'Shop not found' });
-        }
+        // const shop = await Shop.findById(req.body.shopId);
+        
+        // if (!shop) {
+        //     return res.status(404).send({ message: 'Shop not found' });
+        // }
 
         // Create the product
         const product = await new Product({

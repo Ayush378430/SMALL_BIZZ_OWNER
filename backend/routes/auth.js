@@ -3,6 +3,8 @@ const { Shop } = require('../models/shop');
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
 
+let ses;
+
 const validate = (data) => {
     const schema = Joi.object({
         email: Joi.string().email().required().label("Email"),
@@ -10,6 +12,20 @@ const validate = (data) => {
     });
     return schema.validate(data);
 };
+
+router.get('/shopId', (req, res) => {
+    const shopId = req.sessionID;
+    
+    try {
+        // console.log(ses)
+        // console.log('Retrieved shopId from session:', ses);
+        res.status(200).send({ shopId });
+    } catch (error) {
+        console.error('Error retrieving shopId:', error);
+        res.status(500).send({ message: error.message });
+    }
+});
+
 
 router.post("/", async (req, res) => {
     try {
@@ -29,7 +45,10 @@ router.post("/", async (req, res) => {
         }
 
         // Assign shop _id to session upon successful login
-        req.session.shopId = shop._id;
+        ses = shop._id;
+
+        // Log the assigned shopId for debugging
+        // console.log('Assigned shopId to session:', ses);
 
         const token = shop.generateAuthToken();
         res.status(200).send({ data: token, message: "Logged in successfully" });
@@ -37,5 +56,6 @@ router.post("/", async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 });
+
 
 module.exports = router;
