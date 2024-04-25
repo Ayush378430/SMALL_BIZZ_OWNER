@@ -1,4 +1,3 @@
-// import { Container, Row, Col } from "react-bootstrap";
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
@@ -6,16 +5,24 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import AddProduct from "./components/AddProduct";
+import History from "./components/History";
+import Promo from "./components/Promo";
+import Order from "./components/Order";
+import Reviews from "./components/Reviews"
 
-function App(){
-  const shop=localStorage.getItem("token");
-  return(
+function App() {
+  // const shop = localStorage.getItem("token");
+  return (
     <Routes>
-      {shop && <Route path="/login" exact element={<Login/>}/>}
-      <Route path="/signup" exact element={<Signup/>}/>
-      <Route path="/home" exact element={<Home/>}/>
-      <Route path="/" exact element={<Navigate replace to="/login"/>}/>
-      <Route path="/add-product" exact element={<AddProduct/>} />
+      <Route path="/login" exact element={<Login />} />
+      <Route path="/signup" exact element={<Signup />} />
+      <Route path="/home" exact element={<Home />} />
+      <Route path="/" exact element={<Navigate replace to="/login" />} />
+      <Route path="/add-product" exact element={<AddProduct />} />
+      <Route path="/history" exact element={<History />} />
+      <Route path="/reviews" exact element={<Reviews />} />
+      <Route path="/orders" exact element={<Order />} />
+      <Route path="promo" exact element={<Promo />} />
     </Routes>
   );
 }
