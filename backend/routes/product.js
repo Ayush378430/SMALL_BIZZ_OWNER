@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const { Product } = require('../models/product');
-const { Shop } = require('../models/shop'); // Import Shop model
 const Joi = require('joi');
-const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
     try {
@@ -12,18 +10,11 @@ router.post('/', async (req, res) => {
             return res.status(400).send({ message: error.details[0].message });
         }
        
-        // Check if the shop exists
-        // const shop = await Shop.findById(req.body.shopId);
-        
-        // if (!shop) {
-        //     return res.status(404).send({ message: 'Shop not found' });
-        // }
-
         // Create the product
         const product = await new Product({
             name: req.body.name,
             price: req.body.price,
-            shop: req.body.shopId // Associate the product with the shop
+            shopId: req.body.shopId // Associate the product with the shop
         }).save();
 
         res.status(201).send({ message: 'Product created successfully', data: product });

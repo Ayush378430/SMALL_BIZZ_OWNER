@@ -60,7 +60,10 @@ const AddProduct = () => {
     const fetchShopId = async () => {
         try {
             const response = await axios.get('http://localhost:8000/api/auth/shopId');
+            console.log('Response:', response); // Log the response for debugging
             const shopId = response.data.ses;
+            console.log('Shop ID:', shopId); // Log the retrieved shopId for debugging
+
             setProductData(prevData => ({ ...prevData, shopId }));
         } catch (error) {
             console.error('Error fetching shopId:', error);

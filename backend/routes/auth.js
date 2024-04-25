@@ -14,12 +14,12 @@ const validate = (data) => {
 };
 
 router.get('/shopId', (req, res) => {
-    const shopId = req.sessionID;
+    // const shopId = ses;
     
     try {
         // console.log(ses)
         // console.log('Retrieved shopId from session:', ses);
-        res.status(200).send({ shopId });
+        res.status(200).send({ ses });
     } catch (error) {
         console.error('Error retrieving shopId:', error);
         res.status(500).send({ message: error.message });
