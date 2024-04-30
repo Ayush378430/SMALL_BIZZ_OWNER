@@ -65,21 +65,19 @@ router.get('/editproduct/:id', async (req, res) => {
 
 // route for updating data
 router.put('/editproduct/:id', async (req, res) => {
-    const data = req.body;
     const id = req.params.id;
-    console.log("my id is", id);
-    console.log("my data is", data);
+    let newData = req.body;
+    delete newData._id;
+    delete newData.__v;
     try {
-        const { error } = validateProduct(req.body);
+        const { error } = validateProduct(newData);
         if (error) {
+            console.error("Validation Error:", error.details[0].message);
             return res.status(400).send({ message: error.details[0].message });
         }
-
-   
-   
-
-        // Update the product with the specified ID
-        const myprod = await Product.updateOne({_id:id,data})
+      
+      
+        const myprod = await Product.findByIdAndUpdate(id, newData, { new: true });
         res.json(myprod);
     } catch (error) {
         console.log("Error while updating the product", error);
@@ -87,8 +85,17 @@ router.put('/editproduct/:id', async (req, res) => {
     }
 });
 
-
-
+// For deleting
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const myprod = await Product.findByIdAndDelete(id);
+        res.json(myprod);
+    } catch (error) {
+        console.log("Error while deleting the product", error);
+        res.status(500).send({ message: "Error while deleting the product" });
+    }
+})
 
 // Validation function for product
 const validateProduct = (data) => {
