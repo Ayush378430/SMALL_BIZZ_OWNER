@@ -7,10 +7,14 @@ const connection=require("./db")
 const shopRoutes=require("./routes/shop.js");
 const authRoutes=require("./routes/auth.js");
 const addprodRoutes=require("./routes/product.js");
+const bodyParser = require('body-parser');
 
 connection();
 app.use(cors());
 app.options('*', cors());
+app.use(bodyParser.json({ limit: '10mb' })); // Set JSON payload size limit
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // Set URL-encoded payload size limit
+
 app.use(express.json());
 
 // Add middleware for session management

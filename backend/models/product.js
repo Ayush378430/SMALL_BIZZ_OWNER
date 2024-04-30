@@ -10,7 +10,15 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  shopId: { type: mongoose.Schema.Types.ObjectId, ref: 'Shop' }
+  shopId: { type: mongoose.Schema.Types.ObjectId, ref: 'Shop' },
+  image: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  }
 
 });
 
@@ -21,7 +29,9 @@ const validateProduct = (data) => {
   const schema = Joi.object({
     name: Joi.string().required().label('Product Name'),
     price: Joi.number().required().label('Price'),
-    shopId: Joi.string().required().label('Shop ID') // Validate shopId
+    shopId: Joi.string().required().label('Shop ID'), // Validate shopId
+    description: Joi.string().required().label('Description'),
+    image: Joi.string().required().label('Image')
   });
   return schema.validate(data);
 };

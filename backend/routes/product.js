@@ -9,12 +9,14 @@ router.post('/', async (req, res) => {
         if (error) {
             return res.status(400).send({ message: error.details[0].message });
         }
-       
+        
         // Create the product
         const product = await new Product({
             name: req.body.name,
             price: req.body.price,
-            shopId: req.body.shopId // Associate the product with the shop
+            shopId: req.body.shopId, // Associate the product with the shop
+            description: req.body.description,
+            image: req.body.image // Assuming image is already base64 encoded
         }).save();
 
         res.status(201).send({ message: 'Product created successfully', data: product });
@@ -28,7 +30,9 @@ const validateProduct = (data) => {
     const schema = Joi.object({
         name: Joi.string().required().label('Product Name'),
         price: Joi.number().required().label('Price'),
-        shopId: Joi.string().required().label('Shop ID') // Validate shopId
+        shopId: Joi.string().required().label('Shop ID'), // Validate shopId
+        description: Joi.string().required().label('Description'),
+        image: Joi.string().required().label('Image')
     });
     return schema.validate(data);
 };
