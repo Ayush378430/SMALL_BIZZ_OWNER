@@ -7,6 +7,7 @@ const connection=require("./db")
 const shopRoutes=require("./routes/shop.js");
 const authRoutes=require("./routes/auth.js");
 const addprodRoutes=require("./routes/product.js");
+const promoRoutes=require("./routes/promo.js");
 const bodyParser = require('body-parser');
 
 
@@ -28,6 +29,7 @@ app.use(session({
 app.use("/api/shops",shopRoutes);
 app.use("/api/auth",authRoutes);
 app.use("/api/products",addprodRoutes);
+app.use("/api/promo",promoRoutes);
 
 
 const port=8000;
