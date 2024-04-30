@@ -1,6 +1,29 @@
 const router = require('express').Router();
 const { Product } = require('../models/product');
 const Joi = require('joi');
+const axios = require('axios');
+
+
+
+// getting products
+router.get('/', async (req, res) => {
+    try {
+ 
+    const response = await axios.get('http://localhost:8000/api/auth/shopId'); // Assuming the shop id is stored in the session
+    console.log(response.data.ses);
+    shopId=response.data.ses;
+    // Query the database for products associated with the current shop id
+    const products = await Product.find({ shopId });
+
+    // Send the products back in the response
+    res.status(200).json(products);
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error('Error fetching products:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 router.post('/', async (req, res) => {
     try {
@@ -24,6 +47,48 @@ router.post('/', async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 });
+
+// for single user below:
+router.get('/editproduct/:id', async (req, res) => {
+    const id=req.params.id;
+    try{
+    
+        const myprod=await Product.findById(id);
+        res.json(myprod);
+    }
+    catch(error){
+        console.log("Error while fetching the data get single product", error);
+        
+    }
+
+});
+
+// route for updating data
+router.put('/editproduct/:id', async (req, res) => {
+    const data = req.body;
+    const id = req.params.id;
+    console.log("my id is", id);
+    console.log("my data is", data);
+    try {
+        const { error } = validateProduct(req.body);
+        if (error) {
+            return res.status(400).send({ message: error.details[0].message });
+        }
+
+   
+   
+
+        // Update the product with the specified ID
+        const myprod = await Product.updateOne({_id:id,data})
+        res.json(myprod);
+    } catch (error) {
+        console.log("Error while updating the product", error);
+        res.status(500).send({ message: "Error while updating the product" });
+    }
+});
+
+
+
 
 // Validation function for product
 const validateProduct = (data) => {

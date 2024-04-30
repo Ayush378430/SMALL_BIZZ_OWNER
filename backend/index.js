@@ -9,6 +9,7 @@ const authRoutes=require("./routes/auth.js");
 const addprodRoutes=require("./routes/product.js");
 const bodyParser = require('body-parser');
 
+
 connection();
 app.use(cors());
 app.options('*', cors());
@@ -27,6 +28,7 @@ app.use(session({
 app.use("/api/shops",shopRoutes);
 app.use("/api/auth",authRoutes);
 app.use("/api/products",addprodRoutes);
+
 
 const port=8000;
 app.listen(port,()=>console.log("server is running on port 8000"))
