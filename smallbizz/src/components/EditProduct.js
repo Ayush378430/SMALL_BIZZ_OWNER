@@ -30,7 +30,7 @@ const EditProduct = () => {
     const UpdateProduct = async (e) => {
         e.preventDefault();
         try {
-          console.log("PRODUCT DATA IS AS FOLLOWS:",productData);
+           
             await axios.put(`http://localhost:8000/api/products/editproduct/${product_id}`, productData);
             window.location.href = '/home';
         } catch (error) {
@@ -39,7 +39,7 @@ const EditProduct = () => {
     };
 
     const loadProductEdit = async () => {
-        console.log("load prod error", product_id);
+      
         const product = await getSingleProduct(product_id);
         console.log(product);
         setProductData(product);

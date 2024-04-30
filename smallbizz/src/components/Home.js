@@ -12,10 +12,12 @@ import {
 import styled from "@emotion/styled";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import EditIcon from '@mui/icons-material/Edit'; // Import EditIcon component
+import DeleteIcon from '@mui/icons-material/Delete'; // Import DeleteIcon component
 
 const Tablestyle = styled(Table)`
-  width: 90%;
-  margin: auto;
+   width:85%;
+  margin-left:250px;
   margin-top: 20px;
 `;
 
@@ -32,9 +34,7 @@ const Tableheadcell = styled(TableCell)`
 const Home = () => {
   const [products, setProducts] = useState([]);
 const navigate=useNavigate();
-
-  useEffect(() => {
-    const fetchProducts = async () => {
+ const fetchProducts = async () => {
       try {
         // Fetch products for the current shop id
         const response = await axios.get("http://localhost:8000/api/products");
@@ -43,9 +43,27 @@ const navigate=useNavigate();
         console.error("Error fetching products:", error);
       }
     };
+  useEffect(() => {
+   
 
     fetchProducts();
   }, []); // Run the effect only once after the component mounts
+
+
+  const deletetheprod=async (id)=>{
+    try{
+      await axios.delete(`http://localhost:8000/api/products/${id}`);
+    }
+    catch(error){
+       console.log("Error while deleting the API", error);
+    }
+  }
+
+   const deleteProduct = async (Id) => {
+      await deletetheprod(Id);
+      fetchProducts();
+  };
+
 
   return (
     <div>
@@ -79,10 +97,12 @@ const navigate=useNavigate();
                     navigate(`/editproduct/${product._id}`);
                   }}
                 >
-                  Edit
+                 <EditIcon />
                 </Button>
 
-                {/* <Button onClick={() => deleteUser(product._id)}>Delete</Button> */}
+                <Button onClick={() => deleteProduct(product._id)}>
+                  <DeleteIcon />
+                </Button>
               </TableCell>
             </TableRow>
           ))}
