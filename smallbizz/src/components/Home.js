@@ -19,6 +19,7 @@ const Tablestyle = styled(Table)`
    width:85%;
   margin-left:250px;
   margin-top: 20px;
+  position:fixed;
 `;
 
 const Thead = styled(TableHead)`
@@ -69,7 +70,7 @@ const navigate=useNavigate();
     <div>
       <div className="header">Small Bizz</div>
       <Side />
-      <button onClick={() => (window.location.href = "/add-product")}>
+      <button onClick={() => (window.location.href = "/add-product")} className="add-product-button">
         Add Product
       </button>
 
