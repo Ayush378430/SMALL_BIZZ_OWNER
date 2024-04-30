@@ -15,7 +15,9 @@ const AddProduct = () => {
     const fetchShopId = async () => {
       try {
         const response = await axios.get('http://localhost:8000/api/auth/shopId');
+        console.log(response)
         const shopId = response.data.ses;
+        console.log('Shop ID:', shopId);
         setProductData(prevData => ({ ...prevData, shopId }));
       } catch (error) {
         console.error('Error fetching shopId:', error);
