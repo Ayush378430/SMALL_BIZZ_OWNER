@@ -6,21 +6,16 @@ import "./order.css";
 const Order = () => {
   const [orders, setOrders] = useState([]);
 
-
-  //
-  
 const fetchOrders = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/orders`);
+        console.log(response.data);
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
     };
   useEffect(() => {
-    
-
-   
       fetchOrders();
   
   },[]);
