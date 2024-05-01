@@ -8,6 +8,7 @@ const shopRoutes=require("./routes/shop.js");
 const authRoutes=require("./routes/auth.js");
 const addprodRoutes=require("./routes/product.js");
 const promoRoutes=require("./routes/promo.js");
+const orderRoutes=require("./routes/order.js");
 const bodyParser = require('body-parser');
 
 
@@ -30,6 +31,7 @@ app.use("/api/shops",shopRoutes);
 app.use("/api/auth",authRoutes);
 app.use("/api/products",addprodRoutes);
 app.use("/api/promo",promoRoutes);
+app.use("/api/orders",orderRoutes);
 
 
 const port=8000;

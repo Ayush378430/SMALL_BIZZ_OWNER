@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
   orderId: {
-    type: String,
+     type: mongoose.Schema.Types.ObjectId,
     required: true,
     unique: true
   },
@@ -11,30 +11,35 @@ const orderSchema = new mongoose.Schema({
     required: true,
     default: Date.now
   },
-  items: [
-    {
-      productName: {
-        type: String,
-        required: true
-      },
-      quantity: {
-        type: Number,
-        required: true
-      }
-    }
-  ],
-  shopId: { type: mongoose.Schema.Types.ObjectId, ref: 'Shop' },
-  customerId: {
+  productName: {
     type: String,
+    required: true
+  },
+  productId: {
+     type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
+  quantity: {
+    type: Number,
+    required: true
+  },
+  shopId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Shop',
+    required: true
+  },
+  customerId: {
+     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
   orderStatus: {
     type: String,
     enum: ['processing', 'shipped', 'delivered'],
-    default: 'processing'
+    default: 'processing',
+    required: true
   }
 });
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model('buynow', orderSchema);
 
 module.exports = Order;
