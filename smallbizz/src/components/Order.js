@@ -5,35 +5,25 @@ import "./order.css";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
-  const [shopId, setShopId] = useState("");
 
-  useEffect(() => {
-    const fetchShopId = async () => {
+
+  //
+  
+const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/shopId");
-        setShopId(response.data.shopId);
-      } catch (error) {
-        console.error("Error fetching shopId:", error);
-      }
-    };
-
-    fetchShopId();
-  }, []);
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8000/api/orders/?shopId=${shopId}`);
+        const response = await axios.get(`http://localhost:8000/api/orders`);
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
     };
+  useEffect(() => {
+    
 
-    if (shopId) {
+   
       fetchOrders();
-    }
-  }, [shopId]);
+  
+  },[]);
 
   return (
     <div>
@@ -46,8 +36,10 @@ const Order = () => {
             <tr>
               <th>Order ID</th>
               <th>Order Date</th>
-              <th>Items</th>
-              <th>Shop ID</th>
+              <th>Product Name</th>
+              <th>Product ID</th>
+              <th>Quantity</th>
+    
               <th>Customer ID</th>
               <th>Status</th>
             </tr>
@@ -57,16 +49,9 @@ const Order = () => {
               <tr key={order.orderId}>
                 <td>{order.orderId}</td>
                 <td>{new Date(order.orderDate).toLocaleString()}</td>
-                <td>
-                  <ul>
-                    {order.items.map((item, index) => (
-                      <li key={index}>
-                        {item.productName} - Quantity: {item.quantity}
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-                <td>{order.shopId}</td>
+                <td>{order.productName}</td>
+                <td>{order.productId}</td>
+                <td>{order.quantity}</td>
                 <td>{order.customerId}</td>
                 <td>{order.orderStatus}</td>
               </tr>
