@@ -1,45 +1,17 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
-  orderId: {
-     type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    unique: true
-  },
-  orderDate: {
-    type: Date,
-    required: true,
-    default: Date.now
-  },
-  productName: {
-    type: String,
-    required: true
-  },
-  productId: {
-     type: mongoose.Schema.Types.ObjectId,
-    required: true
-  },
-  quantity: {
-    type: Number,
-    required: true
-  },
-  shopId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Shop',
-    required: true
-  },
-  customerId: {
-     type: mongoose.Schema.Types.ObjectId,
-    required: true
-  },
-  orderStatus: {
-    type: String,
-    enum: ['processing', 'shipped', 'delivered'],
-    default: 'processing',
-    required: true
-  }
+const buynowSchema = new mongoose.Schema({
+productId: mongoose.Types.ObjectId,
+    quantity: Number,
+    shopId: mongoose.Types.ObjectId,
+    orderId: String, // Add orderId
+    orderDate: Date, // Add orderDate
+    productName: String, // Add productName
+    customerId: mongoose.Types.ObjectId, // Add customerId
+    orderStatus: { type: String, default: 'pending' } // Add orderStatus with default value
+  
 });
 
-const Order = mongoose.model('buynow', orderSchema);
+const Buynow = mongoose.model('buynow', buynowSchema);
 
-module.exports = Order;
+module.exports = Buynow;
