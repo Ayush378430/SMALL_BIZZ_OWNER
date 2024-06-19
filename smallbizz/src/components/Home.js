@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Side from "./Side";
-import "./home.css"; // Import your CSS file for styling
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import "./home.css";
+import { Button, Table, TableBody, TableCell, TableHead, TableRow, Tooltip } from "@mui/material";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import EditIcon from '@mui/icons-material/Edit'; // Import EditIcon component
-import DeleteIcon from '@mui/icons-material/Delete'; // Import DeleteIcon component
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Tablestyle = styled(Table)`
-   width:85%;
-  margin-left:250px;
+  width: 75%;
+  margin: 20px;
+  margin-left: 250px;
   margin-top: 20px;
-  position:fixed;
 `;
 
 const Thead = styled(TableHead)`
@@ -32,39 +25,48 @@ const Tableheadcell = styled(TableCell)`
   margin-left: 30px;
 `;
 
+const DescriptionCell = styled(TableCell)`
+  max-width: 200px; /* Adjust this value as per your requirement */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+const DescriptionTooltip = ({ description }) => (
+  <Tooltip title={description} placement="top">
+    <span>{description}</span>
+  </Tooltip>
+);
+
 const Home = () => {
   const [products, setProducts] = useState([]);
-const navigate=useNavigate();
- const fetchProducts = async () => {
-      try {
-        // Fetch products for the current shop id
-        const response = await axios.get("http://localhost:8000/api/products");
-        setProducts(response.data); // Set products state with fetched data
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-  useEffect(() => {
-   
+  const navigate = useNavigate();
 
-    fetchProducts();
-  }, []); // Run the effect only once after the component mounts
-
-
-  const deletetheprod=async (id)=>{
-    try{
-      await axios.delete(`http://localhost:8000/api/products/${id}`);
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/products");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
     }
-    catch(error){
-       console.log("Error while deleting the API", error);
-    }
-  }
-
-   const deleteProduct = async (Id) => {
-      await deletetheprod(Id);
-      fetchProducts();
   };
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const deletetheprod = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/products/${id}`);
+    } catch (error) {
+      console.log("Error while deleting the API", error);
+    }
+  };
+
+  const deleteProduct = async (Id) => {
+    await deletetheprod(Id);
+    fetchProducts();
+  };
 
   return (
     <div>
@@ -73,7 +75,6 @@ const navigate=useNavigate();
       <button onClick={() => (window.location.href = "/add-product")} className="add-product-button">
         Add Product
       </button>
-
       <Tablestyle>
         <Thead>
           <TableRow>
@@ -82,7 +83,7 @@ const navigate=useNavigate();
             <Tableheadcell>Price</Tableheadcell>
             <Tableheadcell>Quantity</Tableheadcell>
             <Tableheadcell>Description</Tableheadcell>
-               <Tableheadcell></Tableheadcell>
+            <Tableheadcell></Tableheadcell>
           </TableRow>
         </Thead>
         <TableBody>
@@ -92,7 +93,9 @@ const navigate=useNavigate();
               <TableCell>{product.name}</TableCell>
               <TableCell>{product.price}</TableCell>
               <TableCell>{product.quantity}</TableCell>
-              <TableCell>{product.description}</TableCell>
+              <DescriptionCell>
+                <DescriptionTooltip description={product.description} />
+              </DescriptionCell>
               <TableCell>
                 <Button
                   onClick={() => {
@@ -100,9 +103,8 @@ const navigate=useNavigate();
                     navigate(`/editproduct/${product._id}`);
                   }}
                 >
-                 <EditIcon />
+                  <EditIcon />
                 </Button>
-
                 <Button onClick={() => deleteProduct(product._id)}>
                   <DeleteIcon />
                 </Button>

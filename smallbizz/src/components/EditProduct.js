@@ -17,7 +17,7 @@ const EditProduct = () => {
 
     useEffect(() => {
         loadProductEdit();
-    });
+    },[]);
 
     const getSingleProduct = async (id) => {
         try {
