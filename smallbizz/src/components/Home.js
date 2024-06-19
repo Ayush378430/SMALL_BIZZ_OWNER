@@ -80,6 +80,7 @@ const navigate=useNavigate();
             <Tableheadcell>Product Id</Tableheadcell>
             <Tableheadcell>Product Name</Tableheadcell>
             <Tableheadcell>Price</Tableheadcell>
+            <Tableheadcell>Quantity</Tableheadcell>
             <Tableheadcell>Description</Tableheadcell>
                <Tableheadcell></Tableheadcell>
           </TableRow>
@@ -90,6 +91,7 @@ const navigate=useNavigate();
               <TableCell>{product._id}</TableCell>
               <TableCell>{product.name}</TableCell>
               <TableCell>{product.price}</TableCell>
+              <TableCell>{product.quantity}</TableCell>
               <TableCell>{product.description}</TableCell>
               <TableCell>
                 <Button

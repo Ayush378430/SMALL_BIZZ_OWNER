@@ -11,7 +11,8 @@ const EditProduct = () => {
         description: '', // Add description field
         price: '',
         image: '', // Add image field
-        shopId: ''
+        shopId: '',
+        quantity: '',
     });
 
     useEffect(() => {
@@ -77,7 +78,7 @@ const EditProduct = () => {
                 <input accept="image/*" type="file" onChange={convertto64}></input>
 
                 {image && <img src={image} alt="Preview" className="preview-image" />}
-
+                <input type="number" name="quantity" placeholder="Quantity" value={productData.quantity} onChange={handleChange}/>
                 <button type="submit">Update</button>
             </form>
         </div>
