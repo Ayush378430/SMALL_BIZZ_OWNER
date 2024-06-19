@@ -20,6 +20,11 @@ export const SidebarData=[
         link:"/reviews"
     },
     {
+        title:"Order History",
+        icon: <HistoryIcon/>,
+        link:"/orderhistory"
+    },
+    {
         title:"Promo",
         icon: <StarRateIcon/>,
         link:"/promo"

@@ -9,6 +9,7 @@ import History from "./components/History";
 import Promo from "./components/Promo";
 import Order from "./components/Order";
 import Reviews from "./components/Reviews"
+import OrderHistory from "./components/OrderHistory";
 import EditProduct from "./components/EditProduct"
 
 function App() {
@@ -23,7 +24,9 @@ function App() {
       <Route path="/history" exact element={<History />} />
       <Route path="/reviews" exact element={<Reviews />} />
       <Route path="/orders" exact element={<Order />} />
+      <Route path="/orderhistory" exact element={<OrderHistory/>}/>
       <Route path="promo" exact element={<Promo />} />
+
       <Route path="/editproduct/:product_id" element={<EditProduct></EditProduct>}></Route>
     </Routes>
   );
