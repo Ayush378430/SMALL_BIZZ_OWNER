@@ -39,7 +39,8 @@ router.post('/', async (req, res) => {
             price: req.body.price,
             shopId: req.body.shopId, // Associate the product with the shop
             description: req.body.description,
-            image: req.body.image // Assuming image is already base64 encoded
+            image: req.body.image, // Assuming image is already base64 encoded
+            quantity: req.body.quantity,
         }).save();
 
         res.status(201).send({ message: 'Product created successfully', data: product });
@@ -104,7 +105,8 @@ const validateProduct = (data) => {
         price: Joi.number().required().label('Price'),
         shopId: Joi.string().required().label('Shop ID'), // Validate shopId
         description: Joi.string().required().label('Description'),
-        image: Joi.string().required().label('Image')
+        image: Joi.string().required().label('Image'),
+        quantity: Joi.number().required().label('Quantity')
     });
     return schema.validate(data);
 };

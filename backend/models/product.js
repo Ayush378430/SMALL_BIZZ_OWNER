@@ -18,6 +18,10 @@ const productSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
+  },
+  quantity:{
+    type: Number,
+    required: true
   }
 
 });
@@ -31,7 +35,8 @@ const validateProduct = (data) => {
     price: Joi.number().required().label('Price'),
     shopId: Joi.string().required().label('Shop ID'), // Validate shopId
     description: Joi.string().required().label('Description'),
-    image: Joi.string().required().label('Image')
+    image: Joi.string().required().label('Image'),
+    quantity: Joi.number().required().label('Quantity')
   });
   return schema.validate(data);
 };
