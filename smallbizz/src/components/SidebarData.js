@@ -5,6 +5,11 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 export const SidebarData=[
     {
+        title:"Profile",
+        icon: <HomeIcon/>,
+        link:"/profile"
+    },
+    {
         title:"Home",
         icon: <HomeIcon/>,
         link:"/home"

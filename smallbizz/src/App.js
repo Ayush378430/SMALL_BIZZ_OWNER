@@ -11,6 +11,7 @@ import Order from "./components/Order";
 import Reviews from "./components/Reviews"
 import OrderHistory from "./components/OrderHistory";
 import EditProduct from "./components/EditProduct"
+import Profile from "./components/Profile";
 
 function App() {
   // const shop = localStorage.getItem("token");
@@ -26,6 +27,7 @@ function App() {
       <Route path="/orders" exact element={<Order />} />
       <Route path="/orderhistory" exact element={<OrderHistory/>}/>
       <Route path="promo" exact element={<Promo />} />
+      <Route path="/profile" exact element={<Profile />} />
 
       <Route path="/editproduct/:product_id" element={<EditProduct></EditProduct>}></Route>
     </Routes>
