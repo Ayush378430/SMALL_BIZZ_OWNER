@@ -35,11 +35,11 @@ const orderHistorySchema = new mongoose.Schema({
        required: true
      },
      orderStatus: {
-       type: String,
-       enum: ['processing', 'shipped', 'delivered'],
-       default: 'processing',
-       required: true
-     }
+    type: String,
+    required: true,
+    enum: ['Pending', 'Cancelled', 'Done'], // Add 'Done' to the enum values
+    default: 'Pending'
+  }
 });
 
 const OrderHistory = mongoose.model('OrderHistory', orderHistorySchema);

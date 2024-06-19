@@ -9,8 +9,11 @@ const authRoutes=require("./routes/auth.js");
 const addprodRoutes=require("./routes/product.js");
 const promoRoutes=require("./routes/promo.js");
 const orderRoutes=require("./routes/order.js");
+
 const reviewRoutes=require("./routes/reviews.js");
+const orderhistoryroutes= require("./routes/historyOrder.js");
 const bodyParser = require('body-parser');
+
 
 
 connection();
@@ -34,6 +37,7 @@ app.use("/api/products",addprodRoutes);
 app.use("/api/promo",promoRoutes);
 app.use("/api/orders",orderRoutes);
 app.use("/api/reviews",reviewRoutes);
+app.use("/api/orderhistory",orderhistoryroutes);
 
 const port=8000;
 app.listen(port,()=>console.log("server is running on port 8000"))
