@@ -1,8 +1,11 @@
-const Joi = require("joi");
+const express = require('express');
+const bcrypt = require('bcrypt');
 const { Shop, validate } = require('../models/shop');
-const bcrypt = require("bcrypt");
-const router = require('express').Router();
+const { getShopDetails } = require('../controllers/shopController');
+const auth = require('../middleware/auth');
+const router = express.Router();
 
+// Route to create a new shop
 router.post('/', async (req, res) => {
     try {
         const { error } = validate(req.body);
@@ -35,5 +38,8 @@ router.post('/', async (req, res) => {
         return res.status(500).send({ message: error.message });
     }
 });
+
+// Route to get shop details
+router.get('/me', auth, getShopDetails)
 
 module.exports = router;
