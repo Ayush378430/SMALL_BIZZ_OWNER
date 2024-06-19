@@ -12,7 +12,7 @@ const EditProduct = () => {
         price: '',
         image: '', // Add image field
         shopId: '',
-        quantity: '',
+        quantity: ''
     });
 
     useEffect(() => {

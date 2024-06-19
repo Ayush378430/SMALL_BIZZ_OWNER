@@ -28,14 +28,7 @@ const Order = () => {
     const order = orders.find((order) => order.orderId === orderId);
     if (!order) return;
 
-    if (newStatus === "Cancelled") {
-      try {
-        await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
-        setOrders((prevOrders) => prevOrders.filter((order) => order.orderId !== orderId));
-      } catch (error) {
-        console.error("Error deleting order:", error);
-      }
-    } else if (newStatus === "Done") {
+     if (newStatus === "Done"|| newStatus === "Cancelled") {
       try {
         await axios.post(`http://localhost:8000/api/orders`, {
           orderId: order.orderId,
@@ -43,21 +36,15 @@ const Order = () => {
           productName: order.productName,
           productId: order.productId,
           quantity: order.quantity,
+          shopId: order.shopId, // Add shopId
           customerId: order.customerId,
-          status: newStatus,
+          orderStatus: newStatus, // Change status to orderStatus
         });
-        }
-        catch (error) {
-          console.error("Error adding order:", error);
-        }
-        try{
         await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
         setOrders((prevOrders) => prevOrders.filter((order) => order.orderId !== orderId));
-        }
-        catch (error) {
-          console.error("Error deleting order:", error);
-        }
-        
+      } catch (error) {
+        console.error("Error updating order:", error);
+      }
     } else {
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
