@@ -30,8 +30,8 @@ const Reviews = () => {
 
   return (
     <div>
-      <div className="header">Small Bizz</div>
       <Side />
+      <div className="header">Reviews</div>
       <div className="reviews">
         <h2>Reviews</h2>
         <table>

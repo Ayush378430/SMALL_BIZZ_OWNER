@@ -24,9 +24,9 @@ const History = () => {
   return (
     <div>
       <Side />
-      <div className="header">Small Bizz</div>
+      <div className="header">Transaction History</div>
       <div className="history">
-        <h2>Transaction History</h2>
+  
         <table>
           <thead>
             <tr>

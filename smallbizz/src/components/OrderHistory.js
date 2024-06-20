@@ -23,7 +23,7 @@ const OrderHistory = () => {
   return (
     <div>
       <Side />
-      <div className="header">Small Bizz</div>
+      <div className="header">Order History</div>
       <div className="orders">
         <h2>Order History</h2>
         <table>

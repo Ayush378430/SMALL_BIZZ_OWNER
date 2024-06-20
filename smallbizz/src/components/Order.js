@@ -59,9 +59,9 @@ const Order = () => {
   return (
     <div>
       <Side />
-      <div className="header">Small Bizz</div>
+      <div className="header">Orders</div>
       <div className="orders">
-        <h2>Orders</h2>
+       
         <table>
           <thead>
             <tr>

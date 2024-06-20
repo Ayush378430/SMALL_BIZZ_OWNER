@@ -70,7 +70,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="header">Small Bizz</div>
+      <div className="header">Products</div>
       <Side />
       <button onClick={() => (window.location.href = "/add-product")} className="add-product-button">
         Add Product

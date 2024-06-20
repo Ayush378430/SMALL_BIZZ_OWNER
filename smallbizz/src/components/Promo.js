@@ -60,7 +60,7 @@ const Promo = () => {
   return (
     <div>
       <Side />
-      <div className="header">Small Bizz</div>
+      <div className="header">Achievements</div>
       <div className="promo-form-container">
         <Typography variant="h5">Promote Your Small Business</Typography>
         <form onSubmit={handleSubmit}>

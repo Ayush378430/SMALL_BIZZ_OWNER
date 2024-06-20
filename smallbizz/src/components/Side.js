@@ -1,7 +1,7 @@
 import { SidebarData } from "./SidebarData";
 import { Button, styled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import "./Side.css"
+import "./Side.css";
 
 const StyledButton = styled(Button)`
   margin-top: 20px;
@@ -26,6 +26,9 @@ function Side() {
 
   return (
     <div className="Sidebar">
+      <div className="sidebar-header">
+        SMALL BIZZ
+      </div>
       <ul className="Sidebarlist">
         {SidebarData.map((val, key) => {
           return (
