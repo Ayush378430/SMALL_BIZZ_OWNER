@@ -52,6 +52,10 @@ const Profile = () => {
             <h2>{profile.ownerName}</h2>
           </div>
           <p>
+            <strong>Government ID:</strong>{" "}
+            {profile.gov_id ? profile.gov_id : "Not found"}
+          </p>
+          <p>
             <strong>Shop Name:</strong> {profile.shopName}
           </p>
           <p>
