@@ -4,6 +4,7 @@ const { Shop, validate } = require('../models/shop');
 const GovernId = require('../models/governId');
 const auth = require('../middleware/auth');
 const router = express.Router();
+const { getShopDetails } = require('../controllers/shopController');
 
 // Route to create a new shop
 router.post('/', async (req, res) => {
@@ -38,9 +39,12 @@ router.post('/', async (req, res) => {
 });
 
 // Route to get shop details
-router.get('/me', auth, async (req, res) => {
-  const shop = await Shop.findById(req.shop._id).select('-password');
-  res.send(shop);
-});
+
+
+
+
+// Route to get shop details
+router.get('/me', auth, getShopDetails);
 
 module.exports = router;
+
