@@ -36,21 +36,26 @@ const Profile = () => {
     return <div>Profile not found</div>;
   }
 
+  const initials = profile.ownerName
+    .split(" ")
+    .map((name) => name[0])
+    .join("");
+
   return (
     <div>
-      <div className="header" >Small Bizz</div>
+      <div className="header">Small Bizz</div>
       <Side />
       <div className="profile-container">
         <div className="profile-content">
-          <h2>Profile</h2>
+          <div className="owner-info">
+            <div className="owner-initials">{initials}</div>
+            <h2>{profile.ownerName}</h2>
+          </div>
           <p>
             <strong>Shop Name:</strong> {profile.shopName}
           </p>
           <p>
             <strong>Email:</strong> {profile.email}
-          </p>
-          <p>
-            <strong>Owner Name:</strong> {profile.ownerName}
           </p>
           <p>
             <strong>Mobile No:</strong> {profile.mobileNo}

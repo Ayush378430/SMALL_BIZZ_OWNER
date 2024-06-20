@@ -21,12 +21,38 @@
   text-align: left;
 }
 
+.owner-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+
+.owner-initials {
+  width: 70px;
+  height: 70px;
+  background-color: #6c63ff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.owner-info h2 {
+  margin: 0;
+  padding-top: 10px; /* Adjust this value to move the name down */
+}
+
 .profile-content h2 {
   color: #333;
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;
 }
 
 .profile-content p {
@@ -86,4 +112,3 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
