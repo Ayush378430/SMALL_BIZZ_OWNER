@@ -34,11 +34,13 @@ export const SidebarData=[
         icon: <StarRateIcon/>,
         link:"/promo"
     },
+    
     {
         title:"Your Orders",
         icon: <LocalShippingIcon/>,
         link:"/orders"
     }
+
 
    
 ]

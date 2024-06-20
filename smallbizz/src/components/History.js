@@ -1,8 +1,7 @@
-// History.js (frontend)
-
 import React, { useState, useEffect } from "react";
 import Side from "./Side";
 import axios from "axios";
+
 import "./history.css"; // Assuming this file contains your CSS styling
 
 const History = () => {
