@@ -4,6 +4,7 @@ const Joi=require('joi');
 const passwordComplexity=require('joi-password-complexity');
 const shopSchema=new mongoose.Schema({
     shopName:{type:String,required:true},
+      gov_id: { type: String, required: true },
     email:{type:String,required:true},
     password:{type:String,required:true},
     ownerName:{type:String,required:true},
@@ -32,6 +33,7 @@ const complexityOptions = {
 const validate=(data)=>{
     const schema=Joi.object({
         shopName:Joi.string().required().label("Shop Name"),
+        gov_id: Joi.string().required(),
         email:Joi.string().email().required().label("Email"),
         password: passwordComplexity(complexityOptions).required().label("Password"),
         ownerName:Joi.string().required().label("Owner Name"),

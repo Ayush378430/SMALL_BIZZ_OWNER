@@ -28,8 +28,16 @@ const orderSchema = new mongoose.Schema({
     ref: 'Shop',
     required: true
   },
-  customerId: {
-     type: mongoose.Schema.Types.ObjectId,
+  customerName: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  pincode: {
+    type: String,
     required: true
   },
   orderStatus: {

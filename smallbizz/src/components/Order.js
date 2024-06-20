@@ -28,7 +28,7 @@ const Order = () => {
     const order = orders.find((order) => order.orderId === orderId);
     if (!order) return;
 
-     if (newStatus === "Done"|| newStatus === "Cancelled") {
+    if (newStatus === "Done" || newStatus === "Cancelled") {
       try {
         await axios.post(`http://localhost:8000/api/orders`, {
           orderId: order.orderId,
@@ -37,7 +37,9 @@ const Order = () => {
           productId: order.productId,
           quantity: order.quantity,
           shopId: order.shopId, // Add shopId
-          customerId: order.customerId,
+          customerName: order.customerName,
+          address: order.address, // Add address
+          pincode: order.pincode, // Add pincode
           orderStatus: newStatus, // Change status to orderStatus
         });
         await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
@@ -66,9 +68,10 @@ const Order = () => {
               <th>Order ID</th>
               <th>Order Date</th>
               <th>Product Name</th>
-              <th>Product ID</th>
               <th>Quantity</th>
-              <th>Customer ID</th>
+              <th>Customer Name</th>
+              <th>Address</th>
+              <th>Pincode</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -78,9 +81,10 @@ const Order = () => {
                 <td>{order.orderId}</td>
                 <td>{new Date(order.orderDate).toLocaleString()}</td>
                 <td>{order.productName}</td>
-                <td>{order.productId}</td>
                 <td>{order.quantity}</td>
-                <td>{order.customerId}</td>
+                <td>{order.customerName}</td>
+                <td>{order.address}</td>
+                <td>{order.pincode}</td>
                 <td>
                   <select
                     value={order.status}

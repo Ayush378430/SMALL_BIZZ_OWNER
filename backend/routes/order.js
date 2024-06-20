@@ -11,10 +11,13 @@ const orderSchema = Joi.object({
   productName: Joi.string().required(),
   productId: Joi.string().required(),
   quantity: Joi.number().required(),
+  customerName:Joi.string().required(),
   shopId: Joi.string().required(),
-  customerId: Joi.string().required(),
+  address: Joi.string().required(), // Add address
+  pincode: Joi.string().required(), // Add pincode
   orderStatus: Joi.string().required()
 });
+
 
 // GET route to fetch orders associated with the current shop id
 router.get('/', async (req, res) => {
