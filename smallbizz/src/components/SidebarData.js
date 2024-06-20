@@ -3,6 +3,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import PersonIcon from '@mui/icons-material/Person';
 export const SidebarData=[
     {
         title: "Profile",
