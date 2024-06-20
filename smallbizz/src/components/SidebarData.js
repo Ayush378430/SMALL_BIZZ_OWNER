@@ -5,40 +5,40 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 export const SidebarData=[
     {
-        title:"Profile",
-        icon: <HomeIcon/>,
-        link:"/profile"
+        title: "Profile",
+        icon: <PersonIcon />,
+        link: "/profile"
     },
     {
-        title:"Home",
-        icon: <HomeIcon/>,
-        link:"/home"
+        title: "Home",
+        icon: <HomeIcon />,
+        link: "/home"
     },
     {
-        title:"Transaction History",
-        icon: <HistoryIcon/>,
-        link:"/history"
+        title: "Transaction History",
+        icon: <HistoryIcon />,
+        link: "/history"
     },
     {
-        title:"View Reviews",
-        icon: <ReviewsIcon/>,
-        link:"/reviews"
+        title: "View Reviews",
+        icon: <ReviewsIcon />,
+        link: "/reviews"
     },
     {
-        title:"Order History",
-        icon: <HistoryIcon/>,
-        link:"/orderhistory"
+        title: "Order History",
+        icon: <HistoryIcon />,
+        link: "/orderhistory"
     },
     {
-        title:"Promo",
-        icon: <StarRateIcon/>,
-        link:"/promo"
+        title: "Promo",
+        icon: <StarRateIcon />,
+        link: "/promo"
     },
     
     {
-        title:"Your Orders",
-        icon: <LocalShippingIcon/>,
-        link:"/orders"
+        title: "Your Orders",
+        icon: <LocalShippingIcon />,
+        link: "/orders"
     }
 
 
